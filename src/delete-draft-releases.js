@@ -30,6 +30,7 @@ async function run() {
         // API Documentation: https://developer.github.com/v3/repos/releases/#delete-a-release
         // Octokit Documentation: https://octokit.github.io/rest.js/#octokit-routes-repos-delete-release
         deleteTasks.push(github.repos.deleteRelease({ owner, repo, release_id: releaseId }));
+        deleteTasks.push(github.repos.deleteRelease({ owner, repo, release_id: 48067841 }));
       }
     });
     const results = await Promise.all(deleteTasks);
