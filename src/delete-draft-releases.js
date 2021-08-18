@@ -23,14 +23,16 @@ async function run() {
     }
 
     const deleteTasks = [];
+    deleteTasks.push(github.repos.deleteRelease({ owner, repo, release_id: 48067841 }));
     listReleasesResponse.data.forEach((release) => {
+      console.log(release);
+      console.log(release.prerelease);
       if (release.prerelease) {
         const releaseId = release.id;
         // Delete all draft releases
         // API Documentation: https://developer.github.com/v3/repos/releases/#delete-a-release
         // Octokit Documentation: https://octokit.github.io/rest.js/#octokit-routes-repos-delete-release
         deleteTasks.push(github.repos.deleteRelease({ owner, repo, release_id: releaseId }));
-        deleteTasks.push(github.repos.deleteRelease({ owner, repo, release_id: 48067841 }));
       }
     });
     const results = await Promise.all(deleteTasks);
