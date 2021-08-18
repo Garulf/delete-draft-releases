@@ -528,6 +528,7 @@ async function run() {
     const deleteTasks = [];
     listReleasesResponse.data.forEach((release) => {
       if (release.prelease) {
+        console.log(release)
         const releaseId = release.id;
         // Delete all draft releases
         // API Documentation: https://developer.github.com/v3/repos/releases/#delete-a-release
